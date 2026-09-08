@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>E5 — Los misterios</title>
+
+<style>
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+body {
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #29204b 0%,
+            #16152e 35%,
+            #080914 75%,
+            #03040a 100%
+        );
+
+    color: white;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+#escena {
+
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+}
+
+#cielo {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 25%,
+            rgba(122,94,220,0.15),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(90,160,255,0.12),
+            transparent 25%
+        );
+
+}
+
+.estrella {
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.7);
+
+    animation:
+        parpadear 3s ease-in-out infinite;
+
+}
+
+
+.estrella:nth-child(1) {
+    top: 12%;
+    left: 14%;
+}
+
+.estrella:nth-child(2) {
+    top: 20%;
+    left: 28%;
+    animation-delay: 1s;
+}
+
+.estrella:nth-child(3) {
+    top: 10%;
+    left: 48%;
+    animation-delay: 2s;
+}
+
+.estrella:nth-child(4) {
+    top: 24%;
+    left: 70%;
+    animation-delay: 0.5s;
+}
+
+.estrella:nth-child(5) {
+    top: 14%;
+    left: 87%;
+    animation-delay: 1.5s;
+}
+
+.estrella:nth-child(6) {
+    top: 35%;
+    left: 8%;
+    animation-delay: 2.5s;
+}
+
+.estrella:nth-child(7) {
+    top: 31%;
+    left: 92%;
+    animation-delay: 1s;
+}
+
+
+@keyframes parpadear {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+#luna {
+
+    position: absolute;
+
+    top: 9%;
+    right: 12%;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff8dd,
+            #d7c9ff 65%,
+            #8c82c8
+        );
+
+    box-shadow:
+        0 0 35px rgba(211,200,255,0.3);
+
+    opacity: 0.8;
+
+}
+
+#niebla {
+
+    position: absolute;
+
+    left: 0;
+    bottom: 23%;
+
+    width: 100%;
+    height: 100px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(115,96,170,0.07),
+            transparent
+        );
+
+    filter: blur(20px);
+
+}
+
+#intro {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100;
+
+    background:
+        rgba(2,3,10,0.92);
+
+    transition:
+        opacity 2s ease;
+
+}
+
+
+#intro.oculto {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+#introTexto {
+
+    text-align: center;
+
+    font-size: 25px;
+
+    letter-spacing: 3px;
+
+    color: #e8ddff;
+
+    opacity: 0;
+
+    animation:
+        aparecerIntro 3s ease forwards;
+
+}
+
+
+#introTexto span {
+
+    display: block;
+
+    margin-top: 15px;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.5;
+
+}
+
+
+@keyframes aparecerIntro {
+
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+#mesa {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -20px;
+
+    transform:
+        translateX(-50%);
+
+    width: 850px;
+    height: 340px;
+
+    border-radius:
+        50% 50% 0 0;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            #674a35 0%,
+            #493225 55%,
+            #271b15 100%
+        );
+
+    border-top:
+        5px solid #78583d;
+
+    box-shadow:
+
+        0 -10px 40px
+        rgba(0,0,0,0.5),
+
+        inset 0 15px 30px
+        rgba(0,0,0,0.2);
+
+}
+
+#luzMesa {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 13%;
+
+    transform:
+        translateX(-50%);
+
+    width: 700px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(175,125,255,0.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+}
+
+#cajas {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 22%;
+
+    transform:
+        translateX(-50%);
+
+    width: 700px;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: flex-end;
+
+    z-index: 20;
+
+}
+
+.caja {
+
+    position: relative;
+
+    width: 140px;
+    height: 125px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease;
+
+}
+
+
+/* Hover */
+
+.caja:hover {
+
+    transform:
+        translateY(-8px);
+
+}
+
+.caja-cuerpo {
+
+    position: absolute;
+
+    left: 10px;
+    bottom: 0;
+
+    width: 120px;
+    height: 85px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #59417f,
+            #30244d
+        );
+
+    border:
+
+        2px solid
+        #846bb5;
+
+    box-shadow:
+
+        0 8px 20px
+        rgba(0,0,0,0.5),
+
+        inset 0 0 15px
+        rgba(160,120,255,0.15);
+
+}
+
+.caja-tapa {
+
+    position: absolute;
+
+    left: 5px;
+    top: 18px;
+
+    width: 130px;
+    height: 35px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #71539b,
+            #3c2b60
+        );
+
+    border:
+
+        2px solid
+        #9274c2;
+
+    transform-origin:
+        bottom center;
+
+    transition:
+        transform 0.8s
+        cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        );
+
+    z-index: 4;
+
+}
+
+.caja-cinta {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 0;
+
+    transform:
+        translateX(-50%);
+
+    width: 22px;
+    height: 100%;
+
+    background:
+        rgba(192,160,255,0.35);
+
+    z-index: 5;
+
+}
+
+.caja-brillo {
+
+    position: absolute;
+
+    left: 50%;
+    top: 55%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(190,160,255,0.18),
+            transparent 70%
+        );
+
+    opacity: 0.5;
+
+    animation:
+        brilloCaja 2.5s ease-in-out infinite;
+
+    pointer-events: none;
+
+}
+
+
+@keyframes brilloCaja {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.8);
+
+        opacity: 0.25;
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.1);
+
+        opacity: 0.6;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.8);
+
+        opacity: 0.25;
+    }
+
+}
+
+.caja.abierta {
+
+    cursor: default;
+
+}
+
+
+.caja.abierta:hover {
+
+    transform: none;
+
+}
+
+
+.caja.abierta .caja-tapa {
+
+    transform:
+        rotateX(115deg)
+        translateY(-5px);
+
+}
+
+
+.caja.abierta .caja-brillo {
+
+    animation:
+        explotarBrillo 0.8s ease forwards;
+
+}
+
+
+@keyframes explotarBrillo {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.5);
+
+        opacity: 0.2;
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.8);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(2.4);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+#dialogo {
+
+    position: fixed;
+
+    left: 50%;
+    bottom: 7%;
+
+    transform:
+        translateX(-50%)
+        translateY(20px);
+
+    width:
+        min(720px, 88vw);
+
+    min-height: 130px;
+
+    padding:
+        28px 35px;
+
+    background:
+
+        linear-gradient(
+            rgba(24,20,43,0.96),
+            rgba(14,12,28,0.97)
+        );
+
+    border:
+
+        1px solid
+        rgba(184,157,255,0.55);
+
+    box-shadow:
+
+        0 10px 40px
+        rgba(0,0,0,0.6),
+
+        inset 0 0 25px
+        rgba(140,110,220,0.08);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+
+        opacity 0.5s ease,
+        transform 0.5s ease;
+
+    z-index: 200;
+
+}
+
+
+#dialogo.visible {
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+#nombreDialogo {
+
+    margin-bottom: 10px;
+
+    color: #c9b2ff;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+
+}
+
+
+#textoDialogo {
+
+    color: #eee8ff;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+
+}
+
+#cerrarDialogo {
+
+    position: absolute;
+
+    top: 10px;
+    right: 14px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #aaa0c5;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+#indicador {
+
+    position: absolute;
+
+    top: 7%;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    text-align: center;
+
+    opacity: 0;
+
+    transition:
+        opacity 1s ease;
+
+    z-index: 30;
+
+}
+
+
+#indicador.visible {
+
+    opacity: 1;
+
+}
+
+
+#indicador h1 {
+
+    font-size: 27px;
+
+    font-weight: normal;
+
+    letter-spacing: 4px;
+
+    color: #e8ddff;
+
+}
+
+
+#indicador p {
+
+    margin-top: 10px;
+
+    color: #aaa0c5;
+
+    font-size: 14px;
+
+}
+
+#contador {
+
+    position: absolute;
+
+    top: 5%;
+
+    right: 5%;
+
+    color: #bfb1dd;
+
+    font-size: 14px;
+
+    z-index: 40;
+
+    opacity: 0;
+
+    transition:
+        opacity 1s ease;
+
+}
+
+
+#contador.visible {
+
+    opacity: 1;
+
+}
+
+#continuar {
+
+    position: fixed;
+
+    right: 30px;
+    bottom: 25px;
+
+    padding:
+        12px 25px;
+
+    background:
+        rgba(30,24,50,0.95);
+
+    border:
+        1px solid
+        #8f79bb;
+
+    color:
+        #e5d9ff;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.7s ease;
+
+    z-index: 300;
+
+}
+
+
+#continuar.visible {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+}
+
+
+#continuar:hover {
+
+    background:
+        rgba(67,52,100,0.95);
+
+}
+
+@media (max-width: 800px) {
+
+    #mesa {
+
+        width: 120vw;
+
+    }
+
+
+    #cajas {
+
+        width: 94vw;
+
+    }
+
+
+    .caja {
+
+        transform:
+            scale(0.75);
+
+    }
+
+
+    .caja:hover {
+
+        transform:
+            scale(0.79)
+            translateY(-8px);
+
+    }
+
+
+    .caja.abierta:hover {
+
+        transform:
+            scale(0.75);
+
+    }
+
+
+    #indicador h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    #dialogo {
+
+        bottom: 5%;
+
+        padding:
+            24px 25px;
+
+    }
+
+
+    #textoDialogo {
+
+        font-size: 16px;
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    #cajas {
+
+        width: 100vw;
+
+    }
+
+
+    .caja {
+
+        transform:
+            scale(0.55);
+
+        margin:
+            0 -15px;
+
+    }
+
+
+    .caja:hover {
+
+        transform:
+            scale(0.59)
+            translateY(-8px);
+
+    }
+
+
+    .caja.abierta:hover {
+
+        transform:
+            scale(0.55);
+
+    }
+
+
+    #mesa {
+
+        bottom: -40px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="escena">
+
+    <div id="cielo"></div>
+
+    <div id="luna"></div>
+
+    <div id="niebla"></div>
+
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+
+    <div id="intro">
+
+        <div id="introTexto">
+
+            Hay cosas para tí...
+
+            <span>
+                Pero tendrás que descubrirlo.
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="indicador">
+
+        <h1>
+            CUATRO PEQUEÑOS MISTERIOS
+        </h1>
+
+        <p>
+            Sorpresas
+        </p>
+
+    </div>
+
+
+    <div id="contador">
+
+        0 / 4
+
+    </div>
+
+    <div id="luzMesa"></div>
+
+
+    <div id="mesa"></div>
+
+
+    <div id="cajas">
+
+
+        <!-- CAJA 1 -->
+
+        <div class="caja" data-id="0">
+
+            <div class="caja-brillo"></div>
+
+            <div class="caja-cuerpo">
+
+                <div class="caja-cinta"></div>
+
+            </div>
+
+            <div class="caja-tapa"></div>
+
+        </div>
+
+
+        <!-- CAJA 2 -->
+
+        <div class="caja" data-id="1">
+
+            <div class="caja-brillo"></div>
+
+            <div class="caja-cuerpo">
+
+                <div class="caja-cinta"></div>
+
+            </div>
+
+            <div class="caja-tapa"></div>
+
+        </div>
+
+
+        <!-- CAJA 3 -->
+
+        <div class="caja" data-id="2">
+
+            <div class="caja-brillo"></div>
+
+            <div class="caja-cuerpo">
+
+                <div class="caja-cinta"></div>
+
+            </div>
+
+            <div class="caja-tapa"></div>
+
+        </div>
+
+
+        <!-- CAJA 4 -->
+
+        <div class="caja" data-id="3">
+
+            <div class="caja-brillo"></div>
+
+            <div class="caja-cuerpo">
+
+                <div class="caja-cinta"></div>
+
+            </div>
+
+            <div class="caja-tapa"></div>
+
+        </div>
+
+
+    </div>
+
+    <div id="dialogo">
+
+        <button id="cerrarDialogo">
+            ×
+        </button>
+
+        <div id="nombreDialogo">
+            MISTERIO
+        </div>
+
+        <div id="textoDialogo">
+        </div>
+
+    </div>
+
+    <button id="continuar">
+
+        Continuar →
+
+    </button>
+
+
+</div>
+
+
+
+<script>
+
+const intro =
+    document.getElementById("intro");
+
+const indicador =
+    document.getElementById("indicador");
+
+const contador =
+    document.getElementById("contador");
+
+const cajas =
+    document.querySelectorAll(".caja");
+
+const dialogo =
+    document.getElementById("dialogo");
+
+const nombreDialogo =
+    document.getElementById("nombreDialogo");
+
+const textoDialogo =
+    document.getElementById("textoDialogo");
+
+const cerrarDialogo =
+    document.getElementById("cerrarDialogo");
+
+const continuar =
+    document.getElementById("continuar");
+
+
+const misterios = [
+
+    {
+        nombre: "PRIMER MISTERIO",
+
+        texto:
+        "Derecho a pedirme lo que quieras. (Valido 1 vez, sin preguntar y sin objeción)."
+    },
+
+    {
+        nombre: "SEGUNDO MISTERIO",
+
+        texto:
+        "Regalo fisico."
+    },
+
+    {
+        nombre: "TERCER MISTERIO",
+
+        texto:
+        "Objeto ramdom."
+    },
+
+    {
+        nombre: "ÚLTIMO MISTERIO",
+
+        texto:
+        "Un extra de lo que quieras de las 3 anteriores."
+    }
+
+];
+
+
+setTimeout(() => {
+
+    intro.classList.add("oculto");
+
+}, 4200);
+
+
+setTimeout(() => {
+
+    indicador.classList.add("visible");
+
+    contador.classList.add("visible");
+
+}, 5200);
+
+let abiertas = 0;
+
+cajas.forEach((caja) => {
+
+
+    caja.addEventListener("click", () => {
+
+
+        if (
+            caja.classList.contains("abierta")
+        ) {
+
+            return;
+
+        }
+
+
+        const id =
+            Number(
+                caja.dataset.id
+            );
+
+
+        const misterio =
+            misterios[id];
+
+
+        caja.classList.add(
+            "abierta"
+        );
+
+
+        abiertas++;
+
+        contador.textContent =
+            `${abiertas} / 4`;
+
+        nombreDialogo.textContent =
+            misterio.nombre;
+
+        textoDialogo.textContent =
+            misterio.texto;
+
+        setTimeout(() => {
+
+            dialogo.classList.add(
+                "visible"
+            );
+
+        }, 650);
+
+
+        if (abiertas === 4) {
+
+            setTimeout(() => {
+
+                continuar.classList.add(
+                    "visible"
+                );
+
+            }, 1800);
+
+        }
+
+    });
+
+});
+
+
+cerrarDialogo.addEventListener(
+    "click",
+    () => {
+
+        dialogo.classList.remove(
+            "visible"
+        );
+
+    }
+);
+
+
+continuar.addEventListener(
+    "click",
+    () => {
+
+        window.location.href = "E6.html";
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>E4 — Una carta para ti</title>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+body {
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    color: #392719;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #4b3526 0%,
+            #2b1d15 45%,
+            #120c09 100%
+        );
+
+}
+
+#escena {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+#luz {
+
+    position: fixed;
+
+    width: 650px;
+    height: 650px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,214,145,0.16) 0%,
+            rgba(255,180,80,0.07) 35%,
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    animation:
+        respirarLuz 4s ease-in-out infinite;
+
+}
+
+
+@keyframes respirarLuz {
+
+    0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+}
+
+.particula {
+
+    position: fixed;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: rgba(255,225,170,0.45);
+
+    pointer-events: none;
+
+    animation:
+        flotar 7s linear infinite;
+
+}
+
+
+.particula:nth-child(1) {
+
+    left: 15%;
+    bottom: -10px;
+
+    animation-delay: 0s;
+
+}
+
+.particula:nth-child(2) {
+
+    left: 35%;
+    bottom: -20px;
+
+    animation-delay: 2s;
+
+}
+
+.particula:nth-child(3) {
+
+    left: 65%;
+    bottom: -10px;
+
+    animation-delay: 4s;
+
+}
+
+.particula:nth-child(4) {
+
+    left: 85%;
+    bottom: -20px;
+
+    animation-delay: 1s;
+
+}
+
+
+@keyframes flotar {
+
+    0% {
+
+        transform:
+            translateY(0)
+            translateX(0);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    85% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            translateX(40px);
+
+        opacity: 0;
+
+    }
+
+}
+
+#sobre {
+
+    position: relative;
+
+    width: 430px;
+    height: 285px;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition:
+
+        transform 0.5s ease,
+        opacity 0.8s ease;
+
+}
+
+
+#sobre:hover {
+
+    transform: scale(1.035);
+
+}
+
+
+/* Base */
+
+.sobre-base {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #d9b87d,
+            #b88c50
+        );
+
+    border:
+
+        2px solid
+        #806037;
+
+    border-radius: 5px;
+
+    box-shadow:
+
+        0 25px 50px
+        rgba(0,0,0,0.55),
+
+        inset 0 0 25px
+        rgba(70,40,15,0.15);
+
+}
+
+
+/* Papel interior */
+
+.sobre-base::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border:
+
+        1px solid
+        rgba(90,60,30,0.25);
+
+}
+
+.sobre-izquierda {
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 0;
+
+    border-top:
+        142px solid transparent;
+
+    border-bottom:
+        142px solid transparent;
+
+    border-left:
+        215px solid #c49a5d;
+
+    z-index: 3;
+
+}
+
+
+.sobre-derecha {
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 0;
+
+    border-top:
+        142px solid transparent;
+
+    border-bottom:
+        142px solid transparent;
+
+    border-right:
+        215px solid #b1844b;
+
+    z-index: 3;
+
+}
+
+.sobre-solapa {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        215px solid transparent;
+
+    border-right:
+        215px solid transparent;
+
+    border-top:
+        150px solid #d7b376;
+
+    z-index: 5;
+
+    transform-origin: top center;
+
+    transition:
+
+        transform
+        1s cubic-bezier(
+            0.65,
+            0,
+            0.35,
+            1
+        );
+
+}
+
+.sello {
+
+    position: absolute;
+
+    left: 50%;
+    top: 54%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 68px;
+    height: 68px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+
+        radial-gradient(
+            circle,
+            #78302c,
+            #561c1a
+        );
+
+    border:
+
+        4px solid
+        #451513;
+
+    color: #e2c18a;
+
+    font-size: 27px;
+
+    z-index: 12;
+
+    box-shadow:
+
+        0 6px 12px
+        rgba(0,0,0,0.45);
+
+}
+
+
+.sello::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border:
+
+        1px solid
+        rgba(225,190,130,0.35);
+
+    border-radius: 50%;
+
+}
+
+.texto-sobre {
+
+    position: absolute;
+
+    bottom: 20px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 15;
+
+    color: #4b321e;
+
+    font-size: 18px;
+
+    letter-spacing: 3px;
+
+    font-style: italic;
+
+    white-space: nowrap;
+
+}
+
+
+#carta {
+
+    position: absolute;
+
+    width:
+        min(880px, 91vw);
+
+    height:
+        min(730px, 86vh);
+
+    padding:
+        70px 80px;
+
+    overflow-y: auto;
+
+    opacity: 0;
+
+    transform:
+        scale(0.88)
+        translateY(25px);
+
+    pointer-events: none;
+
+    transition:
+
+        opacity 1.2s ease,
+        transform 1.2s ease;
+
+    z-index: 20;
+
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            #f5e6c5 0%,
+            #ead4aa 70%,
+            #d5b982 100%
+        );
+
+
+    border:
+
+        1px solid
+        #ad8b59;
+
+
+    box-shadow:
+
+        0 30px 70px
+        rgba(0,0,0,0.65),
+
+        inset 0 0 70px
+        rgba(100,65,30,0.15);
+
+}
+
+
+
+#carta::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 13px;
+
+    border:
+
+        1px solid
+        rgba(100,70,35,0.35);
+
+    pointer-events: none;
+
+}
+
+
+#carta::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.5;
+
+    background:
+
+        repeating-linear-gradient(
+            0deg,
+            rgba(80,50,20,0.025)
+            0px,
+            rgba(80,50,20,0.025)
+            1px,
+            transparent
+            1px,
+            transparent
+            4px
+        );
+
+}
+
+#carta.visible {
+
+    opacity: 1;
+
+    transform:
+        scale(1)
+        translateY(0);
+
+    pointer-events: auto;
+
+}
+
+.esquina {
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    opacity: 0.35;
+
+    pointer-events: none;
+
+}
+
+
+.esquina:nth-child(1) {
+
+    top: 0;
+    left: 0;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #8d673d,
+            transparent 65%
+        );
+
+}
+
+
+.esquina:nth-child(2) {
+
+    top: 0;
+    right: 0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #8d673d,
+            transparent 65%
+        );
+
+}
+
+
+.esquina:nth-child(3) {
+
+    bottom: 0;
+    left: 0;
+
+    background:
+        radial-gradient(
+            circle at bottom left,
+            #8d673d,
+            transparent 65%
+        );
+
+}
+
+
+.esquina:nth-child(4) {
+
+    bottom: 0;
+    right: 0;
+
+    background:
+        radial-gradient(
+            circle at bottom right,
+            #8d673d,
+            transparent 65%
+        );
+
+}
+
+.contenido-carta {
+
+    position: relative;
+
+    z-index: 5;
+
+}
+
+
+.fecha {
+
+    text-align: right;
+
+    margin-bottom: 42px;
+
+    font-size: 16px;
+
+    font-style: italic;
+
+    color: #765a3a;
+
+}
+
+
+.saludo {
+
+    margin-bottom: 30px;
+
+    font-size: 32px;
+
+    font-style: italic;
+
+}
+
+#textoCarta {
+
+    font-family:
+
+        "Segoe Print",
+        "Bradley Hand",
+        "Comic Sans MS",
+        cursive;
+
+    font-size: 20px;
+
+    line-height: 1.9;
+
+    white-space: pre-line;
+
+    min-height: 310px;
+
+}
+
+
+/* Cursor */
+
+#textoCarta::after {
+
+    content: "|";
+
+    animation:
+        parpadear 0.8s infinite;
+
+}
+
+
+@keyframes parpadear {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+
+}
+
+.firma {
+
+    margin-top: 45px;
+
+    text-align: right;
+
+    font-family:
+
+        "Segoe Print",
+        "Bradley Hand",
+        cursive;
+
+    font-size: 25px;
+
+    font-style: italic;
+
+    opacity: 0;
+
+    transform:
+        translateY(10px);
+
+    transition:
+
+        opacity 1.5s ease,
+        transform 1.5s ease;
+
+}
+
+
+.firma.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+#continuar {
+
+    position: fixed;
+
+    right: 35px;
+    bottom: 30px;
+
+    padding:
+        13px 28px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+
+    color: #f1dfbd;
+
+    background:
+        rgba(55,35,20,0.94);
+
+    border:
+        1px solid
+        #b99a68;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    transition:
+
+        opacity 0.7s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+
+}
+
+
+#continuar.visible {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+}
+
+
+#continuar:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(90,60,35,0.98);
+
+}
+
+@media (max-width: 650px) {
+
+    #sobre {
+
+        width: 320px;
+        height: 215px;
+
+    }
+
+
+    .sobre-izquierda {
+
+        border-top-width: 107px;
+        border-bottom-width: 107px;
+        border-left-width: 160px;
+
+    }
+
+
+    .sobre-derecha {
+
+        border-top-width: 107px;
+        border-bottom-width: 107px;
+        border-right-width: 160px;
+
+    }
+
+
+    .sobre-solapa {
+
+        border-left-width: 160px;
+        border-right-width: 160px;
+        border-top-width: 112px;
+
+    }
+
+
+    #carta {
+
+        width: 92vw;
+        height: 88vh;
+
+        padding:
+            45px 28px;
+
+    }
+
+
+    .fecha {
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .saludo {
+
+        font-size: 25px;
+
+    }
+
+
+    #textoCarta {
+
+        font-size: 17px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .firma {
+
+        font-size: 21px;
+
+    }
+
+
+    #continuar {
+
+        right: 20px;
+        bottom: 20px;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="escena">
+
+    <div id="luz"></div>
+
+    <div class="particula"></div>
+    <div class="particula"></div>
+    <div class="particula"></div>
+    <div class="particula"></div>
+
+
+    <div id="sobre">
+
+
+        <div class="sobre-base"></div>
+
+
+        <div class="sobre-izquierda"></div>
+
+
+        <div class="sobre-derecha"></div>
+
+
+        <div
+            class="sobre-solapa"
+            id="solapa">
+        </div>
+
+
+        <div class="sello">
+
+            :)
+
+        </div>
+
+
+        <div class="texto-sobre">
+
+            Para ti
+
+        </div>
+
+
+    </div>
+
+    <div id="carta">
+
+        <div class="esquina"></div>
+        <div class="esquina"></div>
+        <div class="esquina"></div>
+        <div class="esquina"></div>
+
+
+        <div class="contenido-carta">
+
+
+            <div class="fecha">
+
+                8 de septiembre del 2026
+
+            </div>
+
+
+            <div class="saludo">
+
+                Para ti...
+
+            </div>
+
+
+            <div id="textoCarta"></div>
+
+
+            <div
+                class="firma"
+                id="firma">
+
+                — Arturo
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <button id="continuar">
+
+        Continuar →
+
+    </button>
+
+
+</div>
+
+
+
+<script>
+
+const sobre =
+    document.getElementById("sobre");
+
+const carta =
+    document.getElementById("carta");
+
+const solapa =
+    document.getElementById("solapa");
+
+const textoCarta =
+    document.getElementById("textoCarta");
+
+const firma =
+    document.getElementById("firma");
+
+const continuar =
+    document.getElementById("continuar");
+
+
+const texto = `Bueno, honestamente no se que poner pero, hoy es un día importante ya que cumples años "wuuuuuu" toco festejar, btw, que haras hoy?
+
+Sabes tu muy pony salvaje y todos solo pony; tu inteligente y todos weyes. Sabes hay algo especial en la forma en la que existes, en tu manera de ser, en las cosas que no dices pero se sienten y todo eso geniuno que te hace increible. 
+Y aunque podría escribir muchas cosas, que ya no se como decirtelas pero lo que si quiero que sepas que para mí te hiciste alguien importante de la nada, a.
+
+Y Feliz cumpleaños, tu a tu ritmo, a tu manera y con todo el cariño que mereces. Cuchau!`;
+
+
+let cartaAbierta = false;
+
+
+sobre.addEventListener("click", () => {
+
+
+    if (cartaAbierta)
+        return;
+
+
+    cartaAbierta = true;
+
+
+    /* Abrir solapa */
+
+    solapa.style.transform =
+        "rotateX(180deg)";
+
+
+    /* Evitar segundo clic */
+
+    sobre.style.pointerEvents =
+        "none";
+
+
+    /*
+        Después de un momento
+        comenzamos a retirar el sobre.
+    */
+
+    setTimeout(() => {
+
+        sobre.style.opacity = "0";
+
+    }, 650);
+
+
+    /*
+        Mostrar carta.
+    */
+
+    setTimeout(() => {
+
+
+        sobre.style.display =
+            "none";
+
+
+        carta.classList.add(
+            "visible"
+        );
+
+
+        escribirCarta();
+
+
+    }, 1250);
+
+
+});
+
+
+let indice = 0;
+
+const velocidad = 38;
+
+
+function escribirCarta() {
+
+
+    function escribir() {
+
+
+        if (indice < texto.length) {
+
+
+            textoCarta.textContent +=
+                texto.charAt(indice);
+
+
+            indice++;
+
+
+            setTimeout(
+                escribir,
+                velocidad
+            );
+
+
+        }
+
+        else {
+
+
+            /* Quitar cursor */
+
+            textoCarta.classList.add(
+                "terminado"
+            );
+
+
+            /*
+                Aparece la firma.
+            */
+
+            setTimeout(() => {
+
+                firma.classList.add(
+                    "visible"
+                );
+
+            }, 800);
+
+
+            /*
+                Después de terminar
+                absolutamente todo,
+                esperamos 5 segundos.
+            */
+
+            setTimeout(() => {
+
+                continuar.classList.add(
+                    "visible"
+                );
+
+            }, 5800);
+
+        }
+
+    }
+
+
+    escribir();
+
+}
+
+
+continuar.addEventListener(
+    "click",
+    () => {
+
+        window.location.href = "E5.html";
+
+    }
+);
+
+
+</script>
+
+
+</body>
+</html>

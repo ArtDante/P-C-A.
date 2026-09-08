@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para ti</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Georgia, serif;
+    background: black;
+}
+
+#escenaRosas {
+    position: fixed;
+    inset: 0;
+    background: black;
+    overflow: hidden;
+}
+
+#mensaje {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: white;
+    font-size: 26px;
+    text-align: center;
+
+    opacity: 0;
+    animation: aparecerMensaje 2s ease forwards;
+
+    z-index: 20;
+}
+
+@keyframes aparecerMensaje {
+    to {
+        opacity: 1;
+    }
+}
+
+#baseRamo {
+    position: absolute;
+
+    left: 50%;
+    top: 58%;
+
+    transform: translate(-50%, -50%);
+
+    width: 330px;
+    height: 300px;
+
+    z-index: 2;
+}
+
+
+.papel {
+    position: absolute;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5efe5 0%,
+            #e2d7c8 45%,
+            #cbbdac 100%
+        );
+
+    box-shadow:
+        0 18px 35px rgba(0,0,0,0.6),
+        inset 0 0 25px rgba(255,255,255,0.25);
+}
+
+
+.papel-izquierdo {
+    left: 5px;
+    top: 45px;
+
+    width: 320px;
+    height: 235px;
+
+    clip-path: polygon(
+        0 0,
+        100% 8%,
+        78% 100%,
+        22% 100%
+    );
+
+    transform: rotate(-5deg);
+
+    z-index: 1;
+}
+
+.papel-derecho {
+    left: 5px;
+    top: 45px;
+
+    width: 320px;
+    height: 235px;
+
+    clip-path: polygon(
+        0 8%,
+        100% 0,
+        78% 100%,
+        22% 100%
+    );
+
+    transform: rotate(5deg);
+
+    z-index: 2;
+}
+
+
+.papel-centro {
+    left: 50%;
+    top: 55px;
+
+    transform: translateX(-50%);
+
+    width: 270px;
+    height: 245px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #eee7dc,
+            #d7cbb9 55%,
+            #c5b5a2
+        );
+
+    clip-path: polygon(
+        4% 0,
+        96% 0,
+        73% 100%,
+        27% 100%
+    );
+
+    z-index: 3;
+}
+
+
+#baseRamo::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 48px;
+
+    transform:
+        translateX(-100%)
+        rotate(-8deg);
+
+    width: 155px;
+    height: 225px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf5ed,
+            #d8ccbc
+        );
+
+    clip-path: polygon(
+        0 0,
+        100% 12%,
+        72% 100%,
+        20% 100%
+    );
+
+    box-shadow:
+        inset -12px 0 20px rgba(0,0,0,0.12);
+
+    z-index: 4;
+}
+
+
+#baseRamo::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 48px;
+
+    transform:
+        translateX(0%)
+        rotate(8deg);
+
+    width: 155px;
+    height: 225px;
+
+    background:
+        linear-gradient(
+            225deg,
+            #faf5ed,
+            #d8ccbc
+        );
+
+    clip-path: polygon(
+        0 12%,
+        100% 0,
+        80% 100%,
+        28% 100%
+    );
+
+    box-shadow:
+        inset 12px 0 20px rgba(0,0,0,0.12);
+
+    z-index: 4;
+}
+
+
+.borde-papel {
+    position: absolute;
+
+    left: 50%;
+    top: 35px;
+
+    transform: translateX(-50%);
+
+    width: 285px;
+    height: 75px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #faf6ef,
+            #e0d5c5
+        );
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        88% 100%,
+        12% 100%
+    );
+
+    box-shadow:
+        0 7px 15px rgba(0,0,0,0.35);
+
+    z-index: 6;
+}
+
+.rosa {
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    font-size: 65px;
+
+    cursor: grab;
+
+    user-select: none;
+
+    z-index: 10;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.rosa:hover {
+    transform: scale(1.08);
+}
+
+.rosa:active {
+    cursor: grabbing;
+}
+
+.rosa.colocada {
+    transform: scale(0.75);
+
+    z-index: 5;
+
+    cursor: default;
+}
+
+.rosa:nth-of-type(1) {
+    left: 12%;
+    top: 70%;
+}
+
+.rosa:nth-of-type(2) {
+    left: 25%;
+    top: 50%;
+}
+
+.rosa:nth-of-type(3) {
+    left: 40%;
+    top: 75%;
+}
+
+.rosa:nth-of-type(4) {
+    left: 58%;
+    top: 48%;
+}
+
+.rosa:nth-of-type(5) {
+    left: 72%;
+    top: 68%;
+}
+
+.rosa:nth-of-type(6) {
+    left: 82%;
+    top: 45%;
+}
+
+
+#ramoCompletado {
+    position: absolute;
+
+    bottom: 8%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-size: 22px;
+    text-align: center;
+
+    opacity: 0;
+
+    transition: opacity 1s ease;
+
+    z-index: 20;
+
+    cursor: pointer;
+
+    pointer-events: none;
+}
+
+#ramoCompletado.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#ramoCompletado:hover {
+    text-shadow: 0 0 12px white;
+}
+
+#escena12Rosas {
+    position: fixed;
+
+    inset: 0;
+
+    background: black;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 100;
+
+    transition: opacity 1s ease;
+}
+
+#escena12Rosas.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.title-text {
+    position: absolute;
+
+    top: 8%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-size: 32px;
+
+    text-align: center;
+
+    z-index: 30;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.5);
+}
+
+.date-text {
+    position: absolute;
+
+    bottom: 8%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-size: 21px;
+
+    text-align: center;
+
+    z-index: 30;
+
+    line-height: 1.5;
+}
+
+.bouquet-wrapper {
+    position: absolute;
+
+    left: calc(50% - 50px);
+
+    width: 500px;
+    height: 430px;
+
+    transform: translateX(-50%);
+
+    transform-origin: bottom center;
+}
+
+.bouquet-wrapper.bottom {
+    bottom: 20px;
+
+    z-index: 2;
+
+    animation:
+        sway-bottom
+        10s
+        ease-in-out
+        infinite;
+}
+
+.bouquet-wrapper.top {
+    bottom: 190px;
+
+    z-index: 1;
+
+    animation:
+        sway-top
+        11s
+        ease-in-out
+        infinite;
+}
+
+@keyframes sway-bottom {
+
+    0%, 100% {
+        transform:
+            translateX(-50%)
+            rotate(-1deg);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            rotate(1deg);
+    }
+}
+
+@keyframes sway-top {
+
+    0%, 100% {
+        transform:
+            translateX(-50%)
+            rotate(1deg);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            rotate(-1deg);
+    }
+}
+
+
+.rose-wrapper {
+    position: absolute;
+
+    bottom: 0;
+
+    width: 170px;
+    height: 350px;
+}
+
+
+.rose-wrapper.left {
+    left: 50%;
+
+    transform:
+        translateX(-150px)
+        rotate(-13deg);
+}
+
+.rose-wrapper.middle-left {
+    left: 50%;
+
+    transform:
+        translateX(-75px)
+        rotate(-6deg);
+}
+
+.rose-wrapper.middle {
+    left: 50%;
+
+    transform:
+        translateX(0);
+}
+
+.rose-wrapper.middle-right {
+    left: 50%;
+
+    transform:
+        translateX(75px)
+        rotate(6deg);
+}
+
+.rose-wrapper.right {
+    left: 50%;
+
+    transform:
+        translateX(150px)
+        rotate(13deg);
+}
+
+
+.petals-group {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 150px;
+    height: 125px;
+}
+
+
+.petal {
+    position: absolute;
+
+    left: 50%;
+    bottom: 20px;
+
+    width: 48px;
+    height: 85px;
+
+    margin-left: -24px;
+
+    transform-origin: bottom center;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    background:
+        linear-gradient(
+            to top,
+            #5b0000,
+            #a40000 35%,
+            #e00000 70%,
+            #ff3333
+        );
+
+    box-shadow:
+        0 3px 10px rgba(120,0,0,0.7);
+}
+
+
+.petal:nth-child(1) {
+    transform: rotate(-48deg);
+}
+
+.petal:nth-child(2) {
+    transform: rotate(-36deg);
+}
+
+.petal:nth-child(3) {
+    transform: rotate(-24deg);
+}
+
+.petal:nth-child(4) {
+    transform: rotate(-12deg);
+}
+
+.petal:nth-child(5) {
+    transform: rotate(0deg);
+}
+
+.petal:nth-child(6) {
+    transform: rotate(12deg);
+}
+
+.petal:nth-child(7) {
+    transform: rotate(24deg);
+}
+
+.petal:nth-child(8) {
+    transform: rotate(36deg);
+}
+
+.petal:nth-child(9) {
+    transform: rotate(48deg);
+}
+
+.petal:nth-child(n+10) {
+    width: 42px;
+    height: 75px;
+
+    margin-left: -21px;
+
+    bottom: 28px;
+}
+
+.petal:nth-child(10) {
+    transform: rotate(-27deg);
+}
+
+.petal:nth-child(11) {
+    transform: rotate(-12deg);
+}
+
+.petal:nth-child(12) {
+    transform: rotate(12deg);
+}
+
+
+.stem {
+    position: absolute;
+
+    left: 50%;
+
+    top: 95px;
+
+    width: 10px;
+    height: 255px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            to right,
+            #0c3d16,
+            #267a35,
+            #0c3d16
+        );
+
+    border-radius: 10px;
+
+    z-index: -5;
+}
+
+.bouquet-wrapper.top .stem {
+    top: 95px;
+
+    height: 445px;
+
+    z-index: -6;
+}
+
+.leaf {
+    position: absolute;
+
+    width: 55px;
+    height: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d541e,
+            #2e913d
+        );
+
+    border-radius:
+        100% 0 100% 0;
+
+    z-index: 3;
+}
+
+.leaf.one {
+    top: 180px;
+    left: 50px;
+    transform: rotate(-35deg);
+}
+
+.leaf.two {
+    top: 230px;
+    right: 48px;
+    transform: rotate(145deg);
+}
+
+
+.star {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 7px white;
+
+    opacity: 0.7;
+}
+
+.stem-base-block {
+    position: absolute;
+
+    left: 50%;
+    bottom: -15px;
+
+    transform: translateX(-50%);
+
+    width: 700px;
+    height: 120px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #2f8f3e 0%,
+            #1b5f26 45%,
+            #0b3012 100%
+        );
+
+    border-radius:
+        50% 50% 12% 12%;
+
+    box-shadow:
+        inset 0 15px 25px rgba(70,150,70,0.25),
+        0 -5px 20px rgba(20,80,25,0.5);
+
+    z-index: 10;
+}
+
+
+/*TALLO CENTRAL EXTRA*/
+
+#escena12Rosas::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 0;
+
+    transform: translateX(-50%);
+
+    width: 18px;
+    height: 250px;
+
+    background:
+        linear-gradient(
+            to right,
+            #0c3d16,
+            #267a35,
+            #0c3d16
+        );
+
+    border-radius: 20px;
+
+    opacity: 0.65;
+
+    z-index: 0;
+}
+
+#botonContinuar {
+    position: absolute;
+
+    left: 50%;
+    bottom: 3%;
+
+    transform: translateX(-50%);
+
+    padding: 12px 30px;
+
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 25px;
+
+    background: rgba(0,0,0,0.65);
+
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease,
+        background 0.3s ease;
+
+    z-index: 50;
+}
+
+
+#botonContinuar.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+#botonContinuar:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div id="escenaRosas">
+
+<div id="mensaje">
+    Hay algo que quiero preparar para ti...
+</div>
+
+
+<div id="baseRamo">
+
+    <div class="papel papel-izquierdo"></div>
+
+    <div class="papel papel-derecho"></div>
+
+    <div class="papel papel-centro"></div>
+
+    <div class="borde-papel"></div>
+
+</div>
+
+
+<div class="rosa" id="rosa1">🌹</div>
+<div class="rosa" id="rosa2">🌹</div>
+<div class="rosa" id="rosa3">🌹</div>
+<div class="rosa" id="rosa4">🌹</div>
+<div class="rosa" id="rosa5">🌹</div>
+<div class="rosa" id="rosa6">🌹</div>
+
+
+<div id="ramoCompletado">
+→→→→El ramo está listo...
+</div>
+
+</div>
+
+
+<div id="escena12Rosas">
+
+<div class="title-text">
+    Rosas Para Ti
+</div>
+
+
+<div class="bouquet-wrapper bottom">
+
+
+    <div class="rose-wrapper left">
+
+        <div
+            class="petals-group"
+            id="petals-group-bottom-left">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div class="rose-wrapper middle-left">
+
+        <div
+            class="petals-group"
+            id="petals-group-bottom-middle-left">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div class="rose-wrapper middle">
+
+        <div
+            class="petals-group"
+            id="petals-group-bottom-middle">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div class="rose-wrapper middle-right">
+
+        <div
+            class="petals-group"
+            id="petals-group-bottom-middle-right">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div class="rose-wrapper right">
+
+        <div
+            class="petals-group"
+            id="petals-group-bottom-right">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+    <div
+        class="rose-wrapper middle"
+        style="
+            transform:
+                translateX(0)
+                translateY(-70px)
+                scale(0.9);
+        "
+    >
+
+        <div
+            class="petals-group"
+            id="petals-group-bottom-back">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+</div>
+
+
+<div class="bouquet-wrapper top">
+
+
+    <div class="rose-wrapper left">
+
+        <div
+            class="petals-group"
+            id="petals-group-top-left">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div class="rose-wrapper middle-left">
+
+        <div
+            class="petals-group"
+            id="petals-group-top-middle-left">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div class="rose-wrapper middle">
+
+        <div
+            class="petals-group"
+            id="petals-group-top-middle">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div class="rose-wrapper middle-right">
+
+        <div
+            class="petals-group"
+            id="petals-group-top-middle-right">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div class="rose-wrapper right">
+
+        <div
+            class="petals-group"
+            id="petals-group-top-right">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+
+    <div
+        class="rose-wrapper middle"
+        style="
+            transform:
+                translateX(0)
+                translateY(-70px)
+                scale(0.9);
+        "
+    >
+
+        <div
+            class="petals-group"
+            id="petals-group-top-back">
+        </div>
+
+        <div class="stem"></div>
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+
+    </div>
+
+</div>
+
+
+<div class="stem-base-block"></div>
+
+
+<button id="botonContinuar">
+    Continuar
+</button>
+
+
+</div>
+
+
+<script>
+
+
+const rosas =
+    document.querySelectorAll(".rosa");
+
+const base =
+    document.getElementById("baseRamo");
+
+const mensajeFinal =
+    document.getElementById("ramoCompletado");
+
+const escenaRosas =
+    document.getElementById("escenaRosas");
+
+const escena12Rosas =
+    document.getElementById("escena12Rosas");
+
+const botonContinuar =
+    document.getElementById("botonContinuar");
+
+
+
+let rosaSeleccionada = null;
+
+let offsetX = 0;
+let offsetY = 0;
+
+let rosasColocadas = 0;
+
+
+
+const posicionesRamo = [
+
+    {
+        x: -105,
+        y: 45
+    },
+
+    {
+        x: -55,
+        y: 20
+    },
+
+    {
+        x: -10,
+        y: 5
+    },
+
+    {
+        x: 35,
+        y: 20
+    },
+
+    {
+        x: 75,
+        y: 45
+    },
+
+    {
+        x: 0,
+        y: 55
+    }
+
+];
+
+
+rosas.forEach(rosa => {
+
+    rosa.addEventListener(
+        "mousedown",
+        iniciarArrastre
+    );
+
+});
+
+
+function iniciarArrastre(e) {
+
+    if (
+        this.classList.contains(
+            "colocada"
+        )
+    ) {
+        return;
+    }
+
+    rosaSeleccionada = this;
+
+    const rect =
+        rosaSeleccionada.getBoundingClientRect();
+
+    offsetX =
+        e.clientX - rect.left;
+
+    offsetY =
+        e.clientY - rect.top;
+
+    rosaSeleccionada.style.zIndex = 100;
+
+}
+
+
+document.addEventListener(
+    "mousemove",
+    e => {
+
+        if (!rosaSeleccionada) {
+            return;
+        }
+
+        rosaSeleccionada.style.left =
+            (e.clientX - offsetX) + "px";
+
+        rosaSeleccionada.style.top =
+            (e.clientY - offsetY) + "px";
+
+    }
+);
+
+document.addEventListener(
+    "mouseup",
+    e => {
+
+        if (!rosaSeleccionada) {
+            return;
+        }
+
+        const rosa =
+            rosaSeleccionada;
+
+        const rosaRect =
+            rosa.getBoundingClientRect();
+
+        const baseRect =
+            base.getBoundingClientRect();
+
+
+        const centroX =
+            rosaRect.left +
+            rosaRect.width / 2;
+
+        const centroY =
+            rosaRect.top +
+            rosaRect.height / 2;
+
+
+        const dentroBase =
+
+            centroX >= baseRect.left &&
+
+            centroX <= baseRect.right &&
+
+            centroY >= baseRect.top &&
+
+            centroY <= baseRect.bottom;
+
+
+        if (dentroBase) {
+
+            colocarRosa(rosa);
+
+        }
+        else {
+
+            rosa.style.zIndex = 10;
+
+        }
+
+
+        rosaSeleccionada = null;
+
+    }
+);
+
+
+function colocarRosa(rosa) {
+
+    const indice =
+        rosasColocadas;
+
+    const posicion =
+        posicionesRamo[indice];
+
+    const baseRect =
+        base.getBoundingClientRect();
+
+
+    rosa.style.left =
+        (
+            baseRect.left +
+            baseRect.width / 2 +
+            posicion.x -
+            40
+        ) + "px";
+
+
+    rosa.style.top =
+        (
+            baseRect.top +
+            posicion.y
+        ) + "px";
+
+
+    rosa.classList.add(
+        "colocada"
+    );
+
+    rosa.style.zIndex = 5;
+
+    rosasColocadas++;
+
+
+    if (
+        rosasColocadas ===
+        rosas.length
+    ) {
+
+        terminarRamo();
+
+    }
+
+}
+
+
+function terminarRamo() {
+
+    mensajeFinal.classList.add(
+        "visible"
+    );
+
+}
+
+
+mensajeFinal.addEventListener(
+    "click",
+    () => {
+
+        escenaRosas.style.opacity = "0";
+
+        escenaRosas.style.pointerEvents =
+            "none";
+
+        escena12Rosas.classList.add(
+            "visible"
+        );
+
+        crearPetalos();
+
+        crearEstrellas();
+
+
+
+        botonContinuar.classList.remove(
+            "visible"
+        );
+
+        setTimeout(() => {
+
+            botonContinuar.classList.add(
+                "visible"
+            );
+
+        }, 5000);
+
+    }
+);
+
+
+
+botonContinuar.addEventListener(
+    "click",
+    () => {
+
+     window.location.href = "E4.html";
+
+    }
+);
+
+
+const gruposPetalos = [
+
+    "petals-group-bottom-left",
+    "petals-group-bottom-middle-left",
+    "petals-group-bottom-middle",
+    "petals-group-bottom-middle-right",
+    "petals-group-bottom-right",
+    "petals-group-bottom-back",
+
+    "petals-group-top-left",
+    "petals-group-top-middle-left",
+    "petals-group-top-middle",
+    "petals-group-top-middle-right",
+    "petals-group-top-right",
+    "petals-group-top-back"
+
+];
+
+
+function crearPetalos() {
+
+    gruposPetalos.forEach(
+        id => {
+
+            const grupo =
+                document.getElementById(id);
+
+            if (!grupo) {
+                return;
+            }
+
+            grupo.innerHTML = "";
+
+
+            for (
+                let i = 0;
+                i < 12;
+                i++
+            ) {
+
+                const petalo =
+                    document.createElement(
+                        "div"
+                    );
+
+                petalo.className =
+                    "petal";
+
+                grupo.appendChild(
+                    petalo
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+function crearEstrellas() {
+
+    for (
+        let i = 0;
+        i < 30;
+        i++
+    ) {
+
+        const estrella =
+            document.createElement(
+                "div"
+            );
+
+        estrella.className =
+            "star";
+
+        estrella.style.left =
+            Math.random() * 100 + "%";
+
+        estrella.style.top =
+            Math.random() * 100 + "%";
+
+        escena12Rosas.appendChild(
+            estrella
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
